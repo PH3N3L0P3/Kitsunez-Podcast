@@ -33,9 +33,9 @@
     font-size:16px;
   }
   ::selection{background:var(--fox);color:#16131f}
-
+ 
   .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-
+ 
   /* ===== Header ===== */
   header{
     border-bottom:1px solid var(--panel-edge);
@@ -62,7 +62,7 @@
   }
   .show-name span{color:var(--fox)}
   .show-sub{color:var(--muted);max-width:620px;font-size:15px}
-
+ 
   /* ===== Toolbar ===== */
   .toolbar{display:flex;gap:8px;flex:none;padding-top:6px}
   .tool-btn{
@@ -74,7 +74,7 @@
   .tool-btn:hover{color:var(--ink);border-color:var(--fox)}
   .tool-btn:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
   .tool-btn.editing{background:var(--fox);border-color:var(--fox);color:#16131f}
-
+ 
   body.edit-mode [data-editable]{
     outline:1px dashed rgba(255,200,87,.5);outline-offset:6px;border-radius:4px;
   }
@@ -83,7 +83,7 @@
     display:none;font-size:12.5px;color:var(--amber);margin-top:10px;
   }
   body.edit-mode .edit-hint{display:block}
-
+ 
   /* ===== EP rail ===== */
   .ep-rail{
     display:flex;gap:10px;margin-top:24px;padding-bottom:0;
@@ -100,9 +100,9 @@
   .ep-tab:hover{color:var(--ink)}
   .ep-tab.active{background:var(--bg);color:var(--ink);border-color:var(--fox);box-shadow:inset 0 3px 0 var(--fox)}
   .ep-tab:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-
+ 
   main{padding:40px 0 80px}
-
+ 
   /* ===== Meta grid ===== */
   .meta-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
@@ -115,20 +115,12 @@
   .meta-card .k{font-size:12px;color:var(--muted);letter-spacing:.5px;margin-bottom:2px}
   .meta-card .v{font-weight:600;font-size:15px}
   .meta-card .v.mono{font-family:var(--mono);font-size:14px}
-  .meta-card.link-card{
-    display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--fox-soft),transparent 70%),var(--panel);
+  .tool-btn.yt-btn{
+    background:var(--fox-soft);border-color:var(--fox);color:var(--fox);
+    display:inline-flex;align-items:center;gap:6px;text-decoration:none;
   }
-  .yt-link{
-    display:inline-flex;align-items:center;gap:8px;
-    color:var(--fox);font-weight:700;font-size:15px;text-decoration:none;
-  }
-  .yt-link:hover{color:var(--amber)}
-  .yt-link .play{
-    width:30px;height:30px;border-radius:9px;flex:none;
-    background:var(--fox);color:#16131f;display:grid;place-items:center;font-size:13px;
-  }
-
+  .tool-btn.yt-btn:hover{background:var(--fox);color:#16131f}
+ 
   /* ===== Sections ===== */
   .sec{margin-bottom:48px}
   .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
@@ -140,7 +132,7 @@
     border:1px solid var(--fox);border-radius:99px;padding:2px 10px;white-space:nowrap;
   }
   .sec p.lead{color:var(--muted);margin-bottom:14px}
-
+ 
   .plain-list{list-style:none}
   .plain-list li{
     padding:10px 0 10px 26px;position:relative;border-bottom:1px dashed var(--panel-edge);
@@ -149,7 +141,7 @@
   .plain-list li::before{
     content:"🦊";position:absolute;left:0;top:10px;font-size:13px;filter:grayscale(.2);
   }
-
+ 
   /* ===== Topic cards ===== */
   .topic{
     background:var(--panel);border:1px solid var(--panel-edge);
@@ -182,8 +174,24 @@
   .t-label.ctx{background:rgba(154,147,176,.14);color:var(--muted)}
   .t-label.idea{background:var(--fox-soft);color:var(--fox)}
   .t-label.praise{background:var(--mint-soft);color:var(--mint)}
-  .t-text{font-size:15px;color:var(--ink)}
-
+.t-text{font-size:15px;color:var(--ink)}
+  .t-text ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .t-text li{position:relative;padding-left:16px}
+  .t-text li::before{content:"–";position:absolute;left:0;color:var(--muted)}
+ 
+  .subtopics{margin-top:4px;padding:0 18px 14px;display:flex;flex-direction:column;gap:10px}
+  .subtopic{
+    background:var(--bg-soft);border:1px solid var(--panel-edge);
+    border-radius:10px;padding:12px 14px;
+  }
+  .subtopic .sub-title{
+    font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .subtopic .sub-title::before{content:"↳";color:var(--muted)}
+  .subtopic .t-row{padding:8px 0}
+  .subtopic .t-label{width:80px;font-size:11px}
+ 
   /* ===== Recap ===== */
   .recap{counter-reset:rc;list-style:none}
   .recap li{
@@ -200,7 +208,7 @@
     display:grid;place-items:center;
   }
   .recap b{color:var(--amber)}
-
+ 
   /* ===== Suggestion table ===== */
   .tbl-wrap{overflow-x:auto;border:1px solid var(--panel-edge);border-radius:14px}
   table{width:100%;border-collapse:collapse;min-width:640px;background:var(--panel)}
@@ -215,11 +223,38 @@
     padding:2px 11px;white-space:nowrap;
   }
   .pill.reward{background:var(--fox-soft);color:var(--fox)}
+  .pill.shop{background:var(--fox-soft);color:var(--fox)}
   .pill.price{background:rgba(255,200,87,.14);color:var(--amber)}
   .pill.event{background:var(--mint-soft);color:var(--mint)}
   .pill.comm{background:rgba(154,147,176,.16);color:#bdb6d6}
   .pill.system{background:var(--rose-soft);color:var(--rose)}
-
+  .pill.operation{background:rgba(154,147,176,.16);color:#bdb6d6}
+  .pill.activity{background:rgba(91,214,192,.12);color:var(--mint)}
+ 
+  /* Type dropdown styled as a pill */
+  select.pill{
+    appearance:none;-webkit-appearance:none;-moz-appearance:none;
+    border:1px solid transparent;cursor:pointer;
+    font-family:'Anuphan',sans-serif;
+  }
+  select.pill:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+  select.pill option{background:var(--panel);color:var(--ink)}
+ 
+  .add-row-wrap{padding:14px;text-align:center;border-top:1px dashed var(--panel-edge)}
+  .add-row-btn{
+    appearance:none;cursor:pointer;border:1px dashed var(--panel-edge);
+    background:transparent;color:var(--muted);font-family:'Anuphan',sans-serif;
+    font-size:13px;font-weight:600;padding:8px 16px;border-radius:10px;transition:.18s;
+  }
+  .add-row-btn:hover{color:var(--fox);border-color:var(--fox)}
+  .sugg-text{outline:none;border-radius:4px}
+  body.edit-mode .sugg-text{background:rgba(255,200,87,.06)}
+  .del-row{
+    appearance:none;cursor:pointer;border:none;background:transparent;
+    color:var(--muted);font-size:16px;line-height:1;padding:2px 6px;border-radius:6px;
+  }
+  .del-row:hover{color:var(--rose);background:var(--rose-soft)}
+ 
   /* ===== Note / coming soon ===== */
   .note{
     background:linear-gradient(135deg,var(--fox-soft),transparent 60%),var(--panel);
@@ -237,7 +272,7 @@
     border-radius:14px;padding:16px 22px;
   }
   .coming .spoil .k{font-family:var(--mono);font-size:12px;color:var(--fox);margin-bottom:6px}
-
+ 
   .ep-panel{display:none}
   .ep-panel.active{display:block;animation:fade .35s ease}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -253,7 +288,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div class="wrap head-inner">
     <div class="head-top">
@@ -265,6 +300,7 @@
         </div>
       </div>
       <div class="toolbar">
+        <a class="tool-btn yt-btn" id="ytLink" href="#" target="_blank" rel="noopener">▶ ดูคลิปเต็มบน YouTube</a>
         <button class="tool-btn" id="editBtn" type="button">✏️ แก้ไขข้อความ</button>
         <button class="tool-btn" id="saveBtn" type="button">💾 ดาวน์โหลดไฟล์</button>
       </div>
@@ -273,9 +309,9 @@
     <nav class="ep-rail" id="epRail" aria-label="เลือกตอน"></nav>
   </div>
 </header>
-
+ 
 <main class="wrap" id="main" data-editable></main>
-
+ 
 <script>
 /* =====================================================================
    เพิ่ม EP ใหม่: ก๊อปบล็อก object ใน EPISODES แล้วแก้เนื้อหาได้เลย
@@ -287,7 +323,7 @@ const EPISODES = [
   no:"EP.1",
   title:"ปัญหาของการสื่อสาร",
   status:"live",
-  link:"https://www.youtube.com/watch?v=hIVpkZjuReE&t=2570s",
+  link:"https://www.youtube.com/live/hIVpkZjuReE?si=zpGq2dMDPGaK-kWj",
   meta:[
     {k:"โฮสต์", v:"เบส (KitsuneZ)"},
     {k:"แขกรับเชิญ", v:"องค์ชายบิ๊ก (Olympus)"},
@@ -296,55 +332,171 @@ const EPISODES = [
   ],
   purpose:[
     "เป็นกระบอกเสียงรวบรวมปัญหา ข้อเสนอแนะ และคำถามจากผู้เล่น ส่งถึงทีมงานอย่างเป็นระบบ",
-    "ขอให้คนดู \u201cสลัดคำว่าโพล/คา\u201d ออกก่อน — ไม่แบ่งฝ่าย ไม่โจมตีใคร มองเป็นปัญหาร่วมของคนเล่นทั้งเกม",
+    "ขอให้คนดู \u201cสลัดคำว่าโพล/คาปา\u201d ออกก่อน — ไม่แบ่งฝ่าย ไม่โจมตีใคร มองเป็นปัญหาร่วมของคนเล่นทั้งเกม",
     "วางเป็นซีรีส์หลาย EP โดยแต่ละ EP เชิญแขกที่ตอบโจทย์หัวข้อนั้นๆ (โฮสต์และแขกเป็นหัวกิลด์/Top Spender ที่เข้าถึงช่องทางฟีดแบคโดยตรง)"
   ],
   topics:[
     {
       title:"ปัญหาการรับฟัง และผู้มีอำนาจส่งฟีดแบค",
       time:"00:07:49",
-      pain:"ฟีดแบคที่ทีมงานได้รับ อาจไม่ใช่ความต้องการของผู้เล่นส่วนใหญ่จริง — ผู้เล่นที่รู้เหลี่ยมสามารถนัดกัน 20–30 คน (หลายกิลด์ + Top Spender) รุมส่งเรื่องเดียวกัน จนปัญหาของคนบางกลุ่มดูเป็นปัญหาของทั้งเซิร์ฟ",
-      ctx:"ทีมแอแคลร์ (AC) เป็นช่องทางประสานงานผู้เล่น 5 กลุ่ม (หัวกิลด์ / Mod–สตรีมเมอร์ / Top Spender / เพจทางการ ฯลฯ) ตอบไวแทบ 24 ชม. แต่ทีมหลังบ้านไม่ได้เช็คสถานการณ์จริงในเกม จึง \u201cไม่ทันเหลี่ยมผู้เล่น\u201d",
-      idea:"ก่อนปรับอะไรที่กระทบวงกว้าง ให้เรียกหัวกิลด์ทั้ง 2 ฝั่งมาประชุม/โหวตยืนยันก่อน (เช่น โพล 4 คา 4) เพื่อกรองว่าเป็นปัญหาจริงของส่วนรวม",
-      praise:"ยกทีมแอแคลร์เป็น MVP ของค่าย — เคสกิจกรรมแจก 40 โค้ด หัวกิลด์ฟีดแบคว่าน้อยไป ปรับเป็น 60 โค้ดภายในคืนเดียว"
+      pain:[
+        "ฟีดแบคที่ทีมงานได้รับ อาจไม่ใช่ความต้องการของผู้เล่นส่วนใหญ่จริง — ผู้เล่นที่รู้เหลี่ยมสามารถนัดกัน 20–30 คน (หลายกิลด์ + Top Spender) รุมส่งเรื่องเดียวกันผ่านแอแคลร์ จนปัญหาของคนบางกลุ่มดูเป็นปัญหาของทั้งเซิร์ฟ",
+        "เคสสมมุติที่ยกมา: กิลด์ที่ไม่ได้ทำของมาสเตอร์ รวมตัวกัน 3 กิลด์ + ชวน Top Spender อีกหลายคน แจ้งฟีดแบคพร้อมกันว่า \u201cคนฝั่งนี้ไม่มีของมาสเตอร์ใช้\u201d ทำให้ตลาดไม่หมุน ใบแอมป์ขายไม่ได้ กาชาไม่มีใครเปิด — กลายเป็น \u201cปัญหาผู้เล่นส่วนใหญ่\u201d ในสายตาทีมงาน ทั้งที่เป็นปัญหาของกลุ่มที่ประสานงานกันมา",
+        "ทีมงานหลังบ้านไม่ได้ลงมาเล่นเกมเอง และไม่เช็คสถานการณ์ในเกมจริง จึงไม่รู้ทันเหลี่ยม/สถานการณ์สงครามของผู้เล่น"
+      ],
+      ctx:[
+        "ทีมแอแคลร์เป็นช่องทางประสานงานผู้เล่น 5 กลุ่ม: หัวกิลด์ / Mod–สตรีมเมอร์ / Top Spender / Official Facebook Page (คอมเมนต์) — แต่ละกลุ่มมีสิทธิ์/สวัสดิการต่างกัน เช่น Top Spender ได้สิทธิ์แก้ปัญหาไวกว่า",
+        "แอแคลร์ตอบไวแทบ 24 ชม. แม้นอกเวลางาน (เคสตัวอย่าง: แจ้งปัญหาตี 2–3 ก็มีแอดมินตอบ) — เป็นจุดแข็งที่สุดของค่ายในมุมโฮสต์",
+        "ช่องโหว่คือแอแคลร์ไม่ใช่ทีมงานหลังบ้าน รับฟีดแบคแล้วส่งต่อ แต่ไม่ได้กรองว่าเสียงที่ \u201cดูเยอะ\u201d มาจากการนัดประสานงานกันของคนกลุ่มเดียว"
+      ],
+      idea:[
+        "ก่อนปรับอะไรที่กระทบวงกว้าง ให้เรียกหัวกิลด์ทั้ง 2 ฝั่งมาคุย/ประชุมก่อน เหมือนที่ทีมงานเคยทำผ่าน Line, เบอร์โทร, Discord หัวกิลด์",
+        "อย่างน้อยให้เป็นการฟังเสียงส่วนใหญ่แบบคัดตัวแทน เช่น คัดหัวกิลด์ฝั่งโพล 4 คน ฝั่งคา 4 คน มาสอบถาม/โหวตว่าเป็นปัญหาจริงหรือไม่ ก่อนออกกิจกรรมที่กระทบสมดุลเกม"
+      ],
+      praise:[
+        "ยกทีมแอแคลร์เป็นสิ่งอัศจรรย์/MVP ของค่าย — เคสกิจกรรม Path of Daw แจก 40 โค้ด หัวกิลด์ทุกกิลด์ฟีดแบคพร้อมกันว่าน้อยไป (ต้องปั้น 100 ตัวละครต่อกิลด์) ทีมงานปรับเป็น 60 โค้ดภายในคืนเดียว (ประชุมรอบสองราว 22:30)"
+      ]
     },
     {
       title:"แฟนซีเน้นการสุ่ม — ชุดที่เหลือไปไหน",
       time:"00:24:16",
-      pain:"ยังมีกลุ่มผู้เล่นสายแฟชั่นในเกม แต่แฟชั่นชุดสวยๆอีกไม่ถูกนำมาขาย ถูกผูกกับการสุ่มและสมุดคอลเลกชันซะส่วนใหญ่",
-      ctx:"Wishing ตัวแพงเข้าใจได้ว่าเป็นของสร้างมูลค่า + ยัดสมุด  — ประเด็นไม่ใช่ราคา แต่คือการบริหารชุดที่เหลือ",
-      idea:"แยก \u201cแฟชั่น\u201d ออกจาก \u201cstat/สมุด\u201d · เอาชุดที่เหลือมาขายตรงสม่ำเสมอ เช่น 2 อาทิตย์/ชุด แพ็คราว 300 บาท ไม่ต้องสุ่ม",
-      praise:"วันที่อัดรายการ ทีมงานเอาชุดบอล 4–5 ชุดมาขายตรงแบบถาวร ไม่สุ่ม — \u201cเหมือนรู้\u201d มาถูกทางแล้ว"
+      pain:[
+        "ผู้เล่นสายแฟชั่น (~90% ไม่เน้นแรง เน้นแฟนซี) ไม่มีทางเลือก — ชุดสวยๆ ในเกมมีอยู่เป็นร้อยชุด แต่ส่วนใหญ่ไม่ถูกนำมาขายตรง หรือถูกผูกกับการสุ่ม (Wishing)",
+        "การที่แฟนซีถูกผูกกับสมุดคอลเลกชัน/สเตตัส ทำให้คนที่งบน้อยต้องเลือกระหว่าง \u201cยัดสมุดให้ครบ\u201d กับ \u201cซื้อชุดที่อยากใส่จริงๆ\u201d — มีงบพอแค่ชุดเดียว แต่ต้องแข่งกับคนที่ไล่ยัดสมุด",
+        "ตัวอย่างผู้เล่น: ยัดคอลเลกชันชุด Shiranui ครบ 9 ตัวไปแล้ว ถ้าจะซื้อเพิ่มอีกตัวเพื่อความสวยอย่างเดียว รู้สึกว่าจ่ายไปเยอะแล้ว ความสวยงามต้องรอไว้ก่อน"
+      ],
+      ctx:[
+        "Wishing ราคาสูง (หลักหมื่น–หลักแสนในบางเกม) เข้าใจได้ว่าเป็นการสร้างมูลค่า + ผูกกับสมุดคอลเลกชัน — ผู้พูดไม่ได้ติดเรื่องราคาตรงนี้ ปัญหาคือชุดอื่นที่เหลือไปไหน",
+        "อ้างอิงผู้เล่นเซิร์ฟ EU ว่าเซิร์ฟเขาไม่เอาแฟนซีไปยัดสมุดคอลเลกชันเลย — เสนอให้แยก \u201cแฟชั่น\u201d ออกจาก \u201cstat/สมุด\u201d อย่างเด็ดขาด"
+      ],
+      idea:[
+        "ถ้าต้องการให้ Wishing สร้างมูลค่า/ราคาสูง ก็คงมาตรฐานไว้ได้ ไม่ต้องลด แต่ชุดสวยๆ อื่นๆ ที่เหลืออีกเป็นร้อยชุด ควรนำมาขายตรงอย่างสม่ำเสมอ ไม่ต้องสุ่ม",
+        "ตัวอย่างที่เสนอ: ขายตรงเป็นแพ็ค 2 อาทิตย์/ชุด ราว 300 บาท หมดเวลาก็หมดไป ไม่ต้องคงตลอดไปก็ได้ — ผู้เล่นสายแฟชั่นจะรู้สึกว่าโอเค"
+      ],
+      praise:[
+        "วันที่อัดรายการพอดีทีมงานเอาชุดบอล (เซตบอลโลก) 4–5 ชุดมาขายตรงแบบถาวร ไม่สุ่ม — โฮสต์ชมว่า \u201cเหมือนรู้\u201d มาถูกทางแล้ว และอยากให้ทำแบบนี้กับชุดอื่นๆ ต่อไปอีกเรื่อยๆ"
+      ]
     },
     {
       title:"การปรับสมดุลในวอร์ — ใครได้ประโยชน์",
       time:"00:29:07",
-      pain:"ลดดาเมจ 20% ทั้ง 2 ฝั่ง = สัดส่วนเท่าเดิม แค่ยืดเวลาตาย วอร์ยิ่งกินเวลา · ประดับเช่า 30 วันก็ซื้อได้ทั้ง 2 ฝั่ง ไม่ได้ช่วยฝั่งเสียเปรียบจริง · เวลาวอร์ 13:00 กับ 15:00 ติดกันเกินไป จบรอบแรกแทบไม่ได้พัก",
-      ctx:"ปัญหาเรื้อรังคือคนเลือกตีกันกลางมากกว่าชนการ์เดียน (เช่น โพลชนแดง 70 คา 40) ทำให้สมดุลคะแนนเพี้ยน · คนที่ตี +18→+20 เองก็รู้สึกไม่แฟร์กับคนที่กระโดดจาก +13 ด้วยประดับเช่า",
-      idea:"ปรับที่ระบบคะแนนแทนดาเมจ — เพิ่มแต้มชนแดง / ลดแต้มไล่ป้อม–ตีกา · ปรับการ์เดียนให้เลือดหนาขึ้น · เว้นช่วงเวลาวอร์ให้ห่างขึ้นแบบเดิม (รอบ 11:00)"
+      pain:[
+        "ลดดาเมจ 20% ทั้ง 2 ฝั่งพร้อมกัน — ผลคือสัดส่วน 100% : 100% เท่าเดิม ไม่มีอะไรเปลี่ยน แค่ยืดเวลาตายของทั้งสองฝั่งออกไป ทำให้วอร์ยิ่งกินเวลานานขึ้น โดยที่ตอนแรกผู้พูดเข้าใจผิดว่าปรับเฉพาะฝั่งคา (เลยกังวลว่าจะโดนด่าในเกม) แต่จริงๆปรับทั้งสองฝั่ง",
+        "ประดับเช่า 30 วันที่นำเข้ามาก็ซื้อได้ทั้งฝั่งโพลและฝั่งคา ไม่ได้ช่วยให้ฝั่งที่เสียเปรียบไล่ตามทันจริง",
+        "เรื่องประดับ +20: คนที่ตี +18 อยู่แล้ว ใช้ประดับเช่าขยับไป +20 ได้แค่ 2 ขั้น แต่คนที่อยู่ +13 กระโดดไป +20 ได้ถึง 7 ขั้น — รู้สึกไม่แฟร์เมื่อเทียบสัดส่วนการลงทุน (แม้จะไม่ถึงกับค้านการนำเข้ามา)",
+        "เวลาวอร์รอบ 13:00 น. กับ 15:00 น. ติดกันเกินไป จบวอร์รอบแรกแทบไม่มีเวลาพัก ก่อนต้องเริ่มรอบสองทันที — เดิมเวลาวอร์อยู่ที่ 11:00 น. ซึ่งจู่ๆ ก็ถูกปรับมาเป็น 13:00 น. โดยไม่ทราบเหตุผล"
+      ],
+      ctx:[
+        "ปัญหาเรื้อรังของทุกเซิร์ฟคือคนส่วนใหญ่เลือกตีกันกลาง (เช่น สมมุติโพล vs คา 100 ต่อ 100 แต่ชนการ์เดียนแดงมีแค่โพล 70 คน คาแค่ 40 คน) — คนที่เหลือไปตีกลางกันหมด ทำให้สมดุลคะแนนของระบบที่อิงการชนการ์เดียนเพี้ยนไปจากที่ตั้งใจ ทั้งที่ไม่ได้โทษคนกลุ่มที่ไม่ไปชนแดง เพราะหลายคนของไม่พอจะลงไปตายซ้ำๆ",
+        "สุดท้ายถ้ามีคนลงวอร์เยอะขึ้นจริง ผู้พูดมองว่าก็โอเค ไม่ติดมาตรการทั้งหมดเสียทีเดียว เพียงแต่มาตรการที่ออกมาอาจไม่ตอบโจทย์จริง"
+      ],
+      idea:[
+        "ปรับที่ระบบคะแนนแทนการลดดาเมจ — เช่น เพิ่มแต้มให้คนที่ชนการ์เดียนแดง หรือลดแต้มที่ได้จากการไล่ป้อม/ตีกาเฉยๆ เพื่อจูงใจให้คนไปเล่นกับการ์เดียนมากขึ้น",
+        "อีกแนวทาง: ปรับให้การ์เดียน/ประตูบ้านเลือดหนาขึ้น เจาะเข้าบ้านยากขึ้น ทำให้วอร์ \u201cตายยากขึ้น\u201d โดยไม่ต้องลดดาเมจของผู้เล่น",
+        "เรื่องเวลาวอร์: เสนอให้เว้นช่วงเวลาวอร์ให้ห่างขึ้นแบบเดิม (เช่น กลับไปที่รอบ 11:00 น. หรือเว้นช่วงพักจริง) เพราะตารางปัจจุบันถี่เกินไปจนแทบไม่ได้พักระหว่างรอบ"
+      ]
     },
     {
       title:"การอัปเดต EP ใหม่ — ผู้เล่นไม่เข้าใจระบบ",
       time:"00:34:59",
-      pain:"ระบบใหม่ (Stella Force, Mercenary Rework, Dispatch ฯลฯ) ต้องงมเอง — ไปหาข้อมูลจากแพทช์เกาหลี/YouTube ต่างประเทศ แปล Google อ่านก็ยังงง ขนาดคนเล่นมา 10 ปียังตอบคำถามในระบบไม่ได้",
-      ctx:"ฐานลูกค้าหลักคือวัย 30+ ทำงานแล้ว ไม่มีเวลานั่งงมระบบ · ตัวอย่างความรู้ที่ควรถูกสื่อสาร: Dispatch เลเวล 5 ต้องใช้สัตว์เลี้ยงเฉพาะตัว / เฉลยคำถามความสนิท pilgrim ",
-      idea:"ทุกครั้งที่อัป EP ใหญ่ ทำ infographic / คู่มือ / ทริกอย่างเป็นทางการ — \u201cจับมือสอนผู้เล่นนิดนึง\u201d ใช้เป็นทั้งการสื่อสารและคอนเทนต์โปรโมท แถมเป็นโอกาสขาย (เช่น สัตว์เลี้ยงที่ขาดแคลนสำหรับ Dispatch ก็เอามาขาย)"
+      pain:[
+        "ระบบใหม่จากการอัป EP (ปัจจุบันคือ Pure Grim Reaper, Stella Force, Mercenary Rework, Dispatch) ผู้เล่นต้องงมเอง — แม้เล่นมาหลายเดือนก็ยังเข้าใจระบบไม่ถึง 100% (ผู้พูดยอมรับว่าตัวเองอยู่ที่ราว 90%)",
+        "แหล่งข้อมูลที่หาได้คือแพทช์เกาหลีหรือ YouTube ต่างประเทศ ซึ่งบางคนภาษาอังกฤษไม่คล่อง ต้องแปลผ่าน Google Translate แล้วยังงงอยู่ดี",
+        "ตัวอย่าง Dispatch: เลเวล 1–4 ส่งสัตว์เลี้ยงตัวไหนก็ได้ แต่เลเวล 5 ต้องใช้สัตว์เลี้ยงเฉพาะตัวเท่านั้น (เช่น ถ้ากำหนดให้ใช้ \u201cหยวน\u201d ส่งตัวอื่นแทนไม่ได้) ซึ่งหลายคนไม่รู้เรื่องนี้เลย",
+        "ตัวอย่าง Ultra PM: ตอนส่งสัตว์เลี้ยงไปทำความสนิทกับทหาร จะมีคำถาม 2 ข้อให้ตอบ ตอบถูกได้คะแนนเยอะ ตอบผิดได้คะแนนน้อย — ผู้เล่นเกมมา 10 ปียังตอบไม่ได้ และไม่รู้ว่าตอบผิดแล้วแก้ไขได้หรือไม่"
+      ],
+      ctx:[
+        "การอัป EP ใหญ่ถือเป็น \u201cข่าวใหญ่\u201d/แพทช์ใหญ่สำหรับผู้เล่น แต่ทีมงานเพียงแปะประกาศอัปเดตเหมือนอัปเดตทั่วไป ไม่ได้ใช้โอกาสนี้เล่นกระแสหรือลงลึกระบบให้ผู้เล่น",
+        "ฐานผู้เล่นส่วนหนึ่งเป็นวัยทำงาน เล่นไม่เต็มเวลา ไม่มีเวลาไปนั่งงมระบบเอง — ผู้พูดมองว่าในเซิร์ฟนี้น่าจะเกินครึ่งที่ยังงงกับระบบ"
+      ],
+      idea:[
+        "ใช้โอกาสที่อัป EP ใหญ่ทำคอนเทนต์โปรโมท/เล่นกระแส ไม่ใช่แค่แปะประกาศอัปเดตทั่วไป",
+        "ลงลึกระบบนิดนึง เช่น ทำ infographic บอกว่าสัตว์เลี้ยงตัวไหน drop อะไรกี่ชิ้น (เช่น \u201cดันนี้ดรอป 2 อัน ดันนี้ดรอป 3 อัน\u201d) หรือเฉลยแนวคำถามความสนิทของ Ultra PM แบบคร่าวๆ",
+        "สำหรับ Mercenary: ทำภาพสรุปว่าถ้าเปิด Mercenary 4 ตัวพร้อมกันแล้วครบแต่ละเลเวลความสนิท จะได้ stat อะไรเพิ่มบ้าง — เป็นทริกเล็กๆ ที่ทำให้ผู้เล่นรู้สึกตื่นเต้นกับระบบมากขึ้น",
+        "ไม่ได้คาดหวังให้ทีมงานเข้าใจระบบแตกฉาน 100% แค่ขอให้ลงลึกพอที่จะช่วยผู้เล่นที่ยังงงกับเรตดรอป/การ์ดบอส/วิธีใช้งานพื้นฐาน",
+        "ของรางวัล/สัตว์เลี้ยงที่จำเป็นสำหรับ Dispatch เลเวล 5 ขึ้นไป ถ้าผู้เล่นขาดแคลน ก็เป็นโอกาสที่ทีมงานจะนำมาขายได้โดยตรง"
+      ]
     },
     {
       title:"Mission Festival และกิจสตรีมเมอร์ที่หายไป",
       time:"00:41:01",
-      pain:"Mission Festival หายไปเกือบปี ทั้งที่เป็นกิจกรรมคอมมูนิตี้ที่ดีมาก · กิจสตรีมเมอร์หายไป ทำให้ Wishing ที่เคยถูกลง (จาก 20,000–30,000 เหลือชุดละ 300–400) กลับแพง ความซวยตกที่คนไม่ได้สตรีม และเกม \u201cเงียบ\u201d ไม่มีคอนเทนต์ให้ดู",
-      ctx:"คาดว่าถูกตัดเพราะรางวัล/ปริมาณของที่ออกสู่ตลาดมากเกินไป · กิจสตรีมเมอร์มีประโยชน์หลายชั้น: แชร์เทคนิคให้ผู้เล่นหลายระดับ CP + เป็นช่องทางโปรโมทฟรีของค่ายเอง",
-      idea:"\u201cแก้ปัญหาได้ ไม่จำเป็นต้องตัดปัญหาทิ้ง\u201d — ถ้ารางวัลแรงไปให้ปรับที่ reward ไม่ใช่ยกเลิกกิจกรรม (หัวข้อที่โฮสต์อยากพูดที่สุดใน EP นี้)",
-      praise:"ตัวกิจกรรมถูกชมว่าออกแบบดี — สร้าง engagement ทั้งกิลด์ และการเผา Force Gem ช่วยหมุนเศรษฐกิจในเกม"
+      pain:[
+        "Mission Festival (กิจกดตัว G หน้าสุดท้าย) หายไปนานแล้ว — คาดว่าเกือบ 1 ปี ทั้งที่เป็นกิจกรรมที่ผู้เล่นมองว่าดี",
+        "กิจกรรมนี้ให้สมาชิกในกิลด์ 1 คนทำได้ 50 เควส สะสมเป็นแต้มทั้งระดับกิลด์และรายบุคคล จบกิจแบ่งรางวัลตามอันดับกิลด์ (เช่น กิลด์ที่ 1 ได้ประดับเทพ 15 วัน กิลด์ที่ 2 ได้ 7 วัน)",
+        "ผลจากการหายไป: ผู้เล่นที่ลงวอร์ไม่ได้ (ของยังไม่พร้อม) เสียโอกาสได้ประดับเช่ามาใช้ฟาร์ม และคอมมูนิตี้เสียกิจกรรมที่ส่งเสริมการพูดคุย/แข่งขันร่วมกันในกิลด์ พร้อมการเผา Force Gem ที่ช่วยหมุนเศรษฐกิจ",
+        "กิจสตรีมเมอร์ (รางวัลเป็นชุด Wishing) ก็หายไปด้วย — ก่อนหน้านี้ Wishing Season 1–4 ตกชุดละประมาณ 20,000–30,000 บาทต่อคอลเลกชัน แต่พอมีกิจสตรีมเมอร์เข้ามาตั้งแต่ราวซีซัน 5 ราคาลดจากเกือบ 2,000 ต่อตัว เหลือประมาณ 300–400 บาทต่อตัว",
+        "ปัญหาคือ \u201cความซวย\u201d ของราคาที่ถูกลงนี้ตกอยู่กับคนที่ไม่ได้สตรีม — คนที่สตรีมได้ของในราคาถูกผ่านกิจกรรม ส่วนคนทั่วไปยังต้องซื้อในราคาเดิม"
+      ],
+      ctx:[
+        "ไม่มีใครในรายการทราบเหตุผลที่แน่ชัดว่าทำไมทั้งสองกิจกรรมถูกตัด แต่คาดเดาว่าน่าจะเกี่ยวกับปริมาณรางวัล/ของที่ออกสู่ตลาดมากเกินไป (เช่น ประดับเทพจาก Mission Festival)",
+        "กิลด์ที่ได้อันดับ 1 ก็ไม่ได้ยึดติดว่าต้องได้รางวัลเต็ม 15 วันเท่านั้น — ถ้ารางวัลถูกปรับลด (เนิร์ฟ) ลงบ้างก็ไม่ใช่ปัญหา แต่การที่กิจกรรมหายไปเฉยๆ หลังมีฟีดแบคบางอย่างถือว่าไม่แฟร์กับผู้เล่น"
+      ],
+      idea:[
+        "\u201cแก้ปัญหาได้ ไม่จำเป็นต้องตัดปัญหาทิ้ง\u201d — ถ้ารางวัลจาก Mission Festival แรงเกินไป (เช่น ประดับเทพ) ให้ปรับลดปริมาณ/มูลค่ารางวัลแทนการยกเลิกกิจกรรมทั้งหมด",
+        "นำกิจสตรีมเมอร์กลับมาในรูปแบบที่บาลานซ์มากขึ้น เพื่อให้คนที่ไม่ได้สตรีมไม่ต้องรับผลกระทบด้านราคา Wishing เพียงฝ่ายเดียว — เป็นหัวข้อที่โฮสต์ระบุว่าอยากพูดถึงมากที่สุดในรายการนี้ และเชื่อมโยงกับข้อที่ 1 เรื่องการรับฟังฟีดแบค"
+      ],
+      praise:[
+        "Mission Festival ถูกมองว่าเป็นกิจกรรมที่ \u201cดี\u201d โดยรวม — ให้สมาชิกกิลด์จำนวนมากมีกิจกรรมร่วมกันทำ ได้ของมาฟาร์ม/ใช้งาน และเสริมการสื่อสารในคอมมูนิตี้ ผ่านการแข่งขันเผา Force Gem ที่ช่วยหมุนเศรษฐกิจในเกม"
+      ]
     },
     {
       title:"เปรียบเทียบมุมมอง + ข้อเสนอแนะรวม",
       time:"00:52:43",
-      pain:"กิจกรรม \u201cถี่แต่ไม่ตอบโจทย์\u201d · เรทตีบวกประดับ 15→18→20 ยากเกิน ผลคือคนไม่ตี → หินไม่ถูกเผา → ราคาหินร่วง ตลาดไม่หมุน · ของทำของ (ใบแอมป์ หินเคลือบ หินโดด) ขาดตลาด ขณะที่ขายแพ็คหิน EX 10–12 ทั้งที่ค่าเฉลี่ยเซิร์ฟยังใส่ขั้น 6 · กิจแจกใบดันยังเป็น Medium/High ทั้งที่ EP41 ดันไปไกลแล้ว · เคสแบนจากความผิดพลาดของทีมงานเอง (แพ็คตั้งราคาผิด ฯลฯ) ทำผู้เล่นเสียความรู้สึกที่สุด",
-      ctx:"\u201cผู้เล่นไม่เลิกเล่นเพราะเลื่อนเปิดเซิร์ฟ แต่เลิกเพราะโดนแบนทั้งที่ตัวเองไม่ผิด\u201d · ถ้าเรทตีบวกเป็น policy เกาหลีที่แก้ไม่ได้ ก็ออกกิจกรรมช่วยโดยคิดถึงตลาดหินเป็นหลัก",
-      idea:"จัด supply ของทำของให้ตรง progression จริงของเซิร์ฟก่อนขายแพ็คขั้นสูง — \u201cอยากได้เงิน เอาใบแอมป์ใส่โปรหน้าเว็บมา ผู้เล่นเข้าใจได้ ไม่มีใครว่า\u201d · ยึดค่า CP กลางของเซิร์ฟ (ราว 700,000–900,000) เป็นเกณฑ์ออกแบบกิจกรรม/drop ไม่โอ๋สายฟรี/CP ต่ำเกินไป · QC แพ็คและกิจกรรมก่อนปล่อย",
-      praise:"กิจ Spotlight ถูกชมว่า \u201cฉลาดมาก\u201d เชิงการตลาด (ไม่ลดราคาใบดันแต่เพิ่มเรทดรอป คนเลยซื้อใบดันเต็มราคา) · เรื่อง Merit ปล่อยง่ายและรักษาคำพูด"
+      pain:[
+        "กิจกรรมในเซิร์ฟนี้ \u201cถี่แต่ไม่ตอบโจทย์\u201d เมื่อเทียบกับค่ายเก่า — ขยันออกกิจกรรมแต่เนื้อหากิจกรรมไม่ตรงกับความต้องการ/สถานะปัจจุบันของเซิร์ฟ",
+        "เรทการตีบวกประดับช่วง 15→18→20 ยากเกินไป (ต่างจากช่วง 1–15 ที่เข้าใจได้ว่ายากขึ้นตามลำดับ) ผลคือราคาหินในตลาดไม่ขยับเลย เพราะคนไม่กล้าตี — ถ้าเรทยากเกินไป คนก็เลือกไม่ตี",
+        "กิจแจกใบดัน (เช่น กิจยิงแฟรงกี้แจกมอเตอร์ไซค์ 1 ใบ เจาะ 1 ใบ) ยังเป็นระดับ Medium/High ทั้งที่ EP ปัจจุบันคือ EP41 ดันไปถึงระดับ B4F (ชั้น 4) แล้ว ของรางวัลตามไม่ทันความก้าวหน้าของเซิร์ฟ",
+        "เคสแบนผู้เล่นจากความผิดพลาดของทีมงานเอง (เช่น แพ็คตั้งราคาผิด แหวน +3 แลก +4 แพ็คเดโม ฯลฯ) เป็นสิ่งที่ทำให้ผู้เล่นเสียความรู้สึกมากที่สุด"
+      ],
+      ctx:[
+        "ผู้พูดมองว่าผู้เล่นไม่เลิกเล่นเพราะการเลื่อนเปิดเซิร์ฟ แต่เลิกเพราะถูกแบนทั้งที่ตัวเองไม่ได้ทำผิด — ขอให้ทีมงานเพิ่มความรอบคอบในงานของตัวเองมากขึ้น",
+        "ถ้าเรทการตีบวกเป็น policy ที่กำหนดมาจากเกาหลีและแก้ไม่ได้ในระดับ local ก็ขอให้ออกกิจกรรมช่วยเหลือโดยคำนึงถึงผลต่อตลาดหินเป็นหลัก"
+      ],
+      idea:[
+        "จัด supply ของทำของ (ใบแอมป์ เจาะขาว หินเคลือบ หินโดด ฯลฯ) ให้ตรงกับ progression จริงของเซิร์ฟ ก่อนนำแพ็คของขั้นสูง (เช่น แพ็คหิน EX 10–12) มาขาย",
+        "ยึดค่า CP กลางของเซิร์ฟ (ประมาณ 700,000–900,000) เป็นเกณฑ์ในการออกแบบกิจกรรมและอัตรา drop ของรางวัล ไม่เอียงไปทางสายฟรี/CP ต่ำมากเกินไป",
+        "QC แพ็คและกิจกรรมก่อนปล่อยให้รอบคอบขึ้น เพื่อลดเคสที่ผู้เล่นถูกแบนจากความผิดพลาดของทีมงานเอง"
+      ],
+      praise:[
+        "กิจ Spotlight ถูกชมว่า \u201cฉลาดมาก\u201d ในมุมการตลาด — ไม่ได้ลดราคาใบดันตรงๆ แต่เพิ่มอัตราดรอปของรางวัล ทำให้ผู้เล่นยังซื้อใบดันในราคาเต็มต่อไป"
+      ],
+      subtopics:[
+        {
+          title:"เรื่อง Merit",
+          pain:[
+            "ค่ายค่อนข้างปล่อย Merit ง่าย ทั้งผ่านกิจกรรมในเกม นอกเกม และหน้าเว็บ — ในมุมหนึ่งคือชื่นชม",
+            "แต่ของรางวัลบางอย่างที่ได้จากการแพท (เช่น \u201cขวดเหลือง\u201d) เอาไปใช้ทำอะไรไม่ได้เลย ผู้พูดบอกว่า \u201cสิ้นหวัง\u201d"
+          ],
+          idea:[
+            "ทีมงานเคยรับปากไว้ว่าผู้เล่นที่แพทไปถึง Diamond จะได้รับการช่วยเหลือเรื่อง Merit ผ่านการขายตรงหรือกิจกรรมแจก — ผู้พูดยืนยันว่าทีมงานรักษาคำพูดข้อนี้จริง ถือเป็นจุดที่ชม",
+            "ขอให้ทบทวนของรางวัลที่แจกออกมา (เช่นขวดเหลือง) ว่ามีประโยชน์ใช้งานจริงหรือไม่ ไม่ใช่แค่แจกเพื่อให้ดูว่าแจกเยอะ"
+          ]
+        },
+        {
+          title:"ใบแอมป์ / เจาะขาว",
+          pain:[
+            "ของทำของอย่างใบแอมป์และเจาะขาวยังขาดตลาดมาก ผู้เล่นไม่มีของมาใช้งาน ตลาดไม่หมุน",
+            "กาชาไม่มีใครอยากเปิด เพราะเปิดออกมาแล้วก็ไม่รู้จะเอาไปใช้กับอะไรต่อ",
+            "ขณะเดียวกันทีมงานเอาแพ็คหิน EX 10/11/12 มาขาย ทั้งที่ค่าเฉลี่ยผู้เล่นในเซิร์ฟส่วนใหญ่ยังใส่หินขั้น 6 อยู่ — คำถามคือแพ็คราว 3,000 บาทนี้ขายให้ใคร เพราะคนที่ใส่ขั้น 6 จะมีสักกี่คนที่เอาหิน 12 มา x2 ต่อ x3"
+          ],
+          idea:[
+            "\u201cเอาเข้ามาได้ ไม่ต้องไปกั๊กเรทหรอก\u201d — ปล่อยใบแอมป์ / เจาะขาวเข้ามาเพิ่มได้เลย ถ้าอยากได้เงินก็เอาใส่โปรหรือโปรเสริมหน้าเว็บ ผู้เล่นเข้าใจได้ ไม่มีใครว่า",
+            "ข้อสังเกตเรื่อง Force Gem (เจม): หลักการใช้เจมในกิจกรรมปัจจุบันถูกมองว่าใช้เยอะเกินไป — พอราคาเจมในตลาดขึ้น ทีมงานก็ออกแพ็คเจมราคากดต่ำมาขาย กลายเป็นวงจรเดิมซ้ำๆ ซึ่งผู้พูดมองว่าเรื่องนี้คาบเกี่ยวกับหัวข้อเศรษฐกิจในเกมที่จะพูดใน EP ถัดไป"
+          ]
+        },
+        {
+          title:"หิน X (Extreme Core) และอัตราเคลือบ",
+          pain:[
+            "หิน X ราคาแพง ทำให้ฝั่งที่เสียเปรียบในวอร์ไม่กล้าอัพของ เพราะต้นทุนสูง ตลาดของหินจึงไม่หมุน",
+            "อัตราการใช้หินเคลือบในการตีบวกขั้นสูง (เช่นช่วง +15 ขึ้น +18 หรือ +19 ขึ้น +20) เพิ่มขึ้นมากจากเดิม — จากที่ใช้ 3 เม็ด เพิ่มเป็น 5 เม็ด และล่าสุดเป็น 7 เม็ดต่อครั้ง ไม่ชัดเจนว่าเป็นการปรับจากค่ายไทยเองหรือมาจาก patch ต้นทาง",
+            "ตัวอย่างจากผู้พูด: ซื้อหิน 15 ชิ้นแรกมาเพื่อตีขึ้น +18 เป็นชิ้นแรกของเซิร์ฟ ใช้ไปถึง 40,000 / 30,000 / 40,000 บาท สำหรับการตีบวกแค่ +15 ขึ้น +18 เท่านั้น (ยังไม่นับ +18 ขึ้น +20)"
+          ],
+          idea:[
+            "ถ้าราคาหิน X ถูกลง ฝั่งที่เสียเปรียบในวอร์จะกล้าอัพของมากขึ้น (เพราะอยากยืนในวอร์ให้ได้) ทำให้ตลาดหินหมุนต่อเนื่อง ผู้ที่มีหิน X ราคาถูกก็จะอยากทำเคลือบ x4 ต่อ เพราะตลาดมีดีมานด์",
+            "เสนอให้พิจารณาทั้งราคา/supply ของหิน X และจำนวนหินเคลือบที่ใช้ต่อครั้งในการตีบวกขั้นสูง ซึ่งเป็นข้อจำกัดที่ทำให้วงจรตลาดหินไม่หมุนตามที่ควรจะเป็น"
+          ]
+        }
+      ]
     }
   ],
   recap:[
@@ -361,9 +513,11 @@ const EPISODES = [
     {s:"ปรับสมดุลวอร์ผ่านระบบแต้ม (เพิ่มแต้มชนแดง ลดแต้มตีกา/ไล่ป้อม) แทนการลดดาเมจ และเว้นช่วงเวลาวอร์", type:"system", typeName:"System"},
     {s:"ทำ infographic / คู่มือระบบใหม่ทุกครั้งที่อัป EP ใหญ่ — ใช้เป็นทั้งการสื่อสารและการตลาด", type:"comm", typeName:"Communication"},
     {s:"นำ Mission Festival และกิจสตรีมเมอร์กลับมา โดยปรับ reward ให้สมดุลแทนการยกเลิก", type:"event", typeName:"Event / Reward"},
-    {s:"จัด supply ของทำของ (ใบแอมป์ หินเคลือบ หินโดด) ให้ตรง progression ก่อนขายแพ็คขั้นสูง", type:"reward", typeName:"Supply / Economy"},
-    {s:"ยึดค่า CP กลางของเซิร์ฟเป็นเกณฑ์ออกแบบกิจกรรมและ drop", type:"system", typeName:"System"},
-    {s:"QC แพ็ค/กิจกรรมก่อนปล่อย ลดเคสแบนผู้เล่นจากความผิดพลาดของทีมงานเอง", type:"comm", typeName:"Operation"}
+    {s:"จัด supply ของทำของ (ใบแอมป์ เจาะขาว หินเคลือบ หินโดด) ให้ตรงกับ progression จริงของเซิร์ฟ ก่อนขายแพ็คหินขั้นสูง (EX 10–12) — ปล่อยเข้ามาเพิ่มได้เลย ไม่ต้องกั๊กเรท", type:"shop", typeName:"Shop"},
+    {s:"ยึดค่า CP กลางของเซิร์ฟเป็นเกณฑ์ออกแบบกิจกรรมและ drop", type:"activity", typeName:"กิจกรรม"},
+    {s:"QC แพ็ค/กิจกรรมก่อนปล่อย ลดเคสแบนผู้เล่นจากความผิดพลาดของทีมงานเอง", type:"shop", typeName:"Shop"},
+    {s:"ทบทวนของรางวัลจาก Merit ที่ใช้งานไม่ได้จริง (เช่น \u201cขวดเหลือง\u201d) — ของที่แจกควรมีประโยชน์ใช้งาน ไม่ใช่แค่แจกเยอะ", type:"shop", typeName:"Shop"},
+    {s:"ทบทวนราคา/supply หิน X (Extreme Core) และจำนวนหินเคลือบต่อครั้งของการตีบวกขั้นสูง (+15→+18, +19→+20) ที่เพิ่มขึ้นจาก 3 เป็น 5 เป็น 7 เม็ด", type:"shop", typeName:"Shop"}
   ]
 },
 {
@@ -377,13 +531,45 @@ const EPISODES = [
   ]
 }
 ];
-
+ 
 /* ===== Render (ข้ามถ้าไฟล์นี้ถูกบันทึกจากโหมดแก้ไขแล้ว) ===== */
 const rail = document.getElementById('epRail');
 const main = document.getElementById('main');
 const alreadyRendered = main.dataset.rendered === '1';
-
+ 
 if(!alreadyRendered){
+const TYPE_OPTIONS = [
+  {key:"comm", label:"Communication"},
+  {key:"system", label:"System"},
+  {key:"event", label:"Event / Reward"},
+  {key:"shop", label:"Shop"},
+  {key:"operation", label:"Operation"},
+];
+ 
+function typeSelect(currentType){
+  const opts = TYPE_OPTIONS.map(o=>
+    `<option value="${o.key}"${o.key===currentType?' selected':''}>${o.label}</option>`
+  ).join('');
+  return `<select class="pill ${currentType}" onchange="this.className='pill '+this.value">${opts}</select>`;
+}
+ 
+function addSuggestionRow(btn){
+  const tbody = btn.closest('.tbl-wrap').querySelector('.sugg-body');
+  const idx = tbody.children.length + 1;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td style="color:var(--muted);font-family:var(--mono)">${idx}</td>
+    <td class="sugg-text" contenteditable="${editing?'true':'false'}" data-editable>พิมพ์รายการใหม่ที่นี่...</td>
+    <td>${typeSelect('comm')}</td>
+    <td style="text-align:center"><button type="button" class="del-row" title="ลบรายการนี้" onclick="this.closest('tr').remove()">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+  if(!editing) setEdit(true);
+  const cell = tr.querySelector('.sugg-text');
+  cell.focus();
+  document.execCommand && document.execCommand('selectAll', false, null);
+}
+ 
   EPISODES.forEach((ep,i)=>{
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -391,7 +577,7 @@ if(!alreadyRendered){
     btn.dataset.ep = ep.id;
     btn.innerHTML = `<span class="ep-no">${ep.no}${ep.status==='soon'?' · เร็วๆ นี้':''}</span>${ep.title}`;
     rail.appendChild(btn);
-
+ 
     const panel = document.createElement('section');
     panel.className = 'ep-panel' + (i===0?' active':'');
     panel.id = 'panel-' + ep.id;
@@ -400,7 +586,19 @@ if(!alreadyRendered){
   });
   main.dataset.rendered = '1';
 }
-
+ 
+const ytLink = document.getElementById('ytLink');
+ 
+function updateYtLink(epId){
+  const ep = EPISODES.find(e=>e.id===epId);
+  if(ep && ep.link){
+    ytLink.href = ep.link;
+    ytLink.style.display = 'inline-flex';
+  } else {
+    ytLink.style.display = 'none';
+  }
+}
+ 
 document.querySelectorAll('.ep-tab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.ep-tab').forEach(b=>b.classList.remove('active'));
@@ -408,23 +606,26 @@ document.querySelectorAll('.ep-tab').forEach(btn=>{
     document.querySelectorAll('.ep-panel').forEach(p=>p.classList.remove('active'));
     const target = document.getElementById('panel-'+btn.dataset.ep);
     if(target) target.classList.add('active');
+    updateYtLink(btn.dataset.ep);
   });
 });
-
+ 
+updateYtLink(EPISODES[0].id);
+ 
+ 
+function list(val){
+  const arr = Array.isArray(val) ? val : [val];
+  return '<ul>' + arr.map(v=>`<li>${v}</li>`).join('') + '</ul>';
+}
+ 
+ 
 function renderLive(ep){
   const meta = ep.meta.map(m=>`
     <div class="meta-card"><div class="k">${m.k}</div><div class="v${m.mono?' mono':''}">${m.v}</div></div>
   `).join('');
-
-  const linkCard = ep.link ? `
-    <div class="meta-card link-card">
-      <a class="yt-link" href="${ep.link}" target="_blank" rel="noopener">
-        <span class="play">▶</span> ดูคลิปเต็มบน YouTube
-      </a>
-    </div>` : '';
-
+ 
   const purpose = ep.purpose.map(p=>`<li>${p}</li>`).join('');
-
+ 
   const topics = ep.topics.map((t,idx)=>`
     <details class="topic"${idx===0?' open':''}>
       <summary>
@@ -434,51 +635,62 @@ function renderLive(ep){
         <span class="chev">▸</span>
       </summary>
       <div class="t-body">
-        <div class="t-row"><span class="t-label pain">Pain Point</span><span class="t-text">${t.pain}</span></div>
-        <div class="t-row"><span class="t-label ctx">บริบท</span><span class="t-text">${t.ctx}</span></div>
-        <div class="t-row"><span class="t-label idea">ข้อเสนอ</span><span class="t-text">${t.idea}</span></div>
-        ${t.praise?`<div class="t-row"><span class="t-label praise">สิ่งที่ชม</span><span class="t-text">${t.praise}</span></div>`:''}
+        <div class="t-row"><span class="t-label pain">Pain Point</span><span class="t-text">${list(t.pain)}</span></div>
+        <div class="t-row"><span class="t-label ctx">บริบท</span><span class="t-text">${list(t.ctx)}</span></div>
+        <div class="t-row"><span class="t-label idea">ข้อเสนอ</span><span class="t-text">${list(t.idea)}</span></div>
+        ${t.praise?`<div class="t-row"><span class="t-label praise">สิ่งที่ชม</span><span class="t-text">${list(t.praise)}</span></div>`:''}
       </div>
+      ${t.subtopics ? `<div class="subtopics">${t.subtopics.map(st=>`
+        <div class="subtopic">
+          <div class="sub-title">${st.title}</div>
+          <div class="t-row"><span class="t-label pain">Pain Point</span><span class="t-text">${list(st.pain)}</span></div>
+          <div class="t-row"><span class="t-label idea">ข้อเสนอ</span><span class="t-text">${list(st.idea)}</span></div>
+        </div>
+      `).join('')}</div>` : ''}
     </details>
   `).join('');
-
+ 
   const recap = ep.recap.map(r=>`<li>${r}</li>`).join('');
-
+ 
   const sugg = ep.suggestions.map((s,idx)=>`
     <tr><td style="color:var(--muted);font-family:var(--mono)">${idx+1}</td>
-    <td>${s.s}</td>
-    <td><span class="pill ${s.type}">${s.typeName}</span></td></tr>
+    <td class="sugg-text" contenteditable="false" data-editable>${s.s}</td>
+    <td>${typeSelect(s.type)}</td>
+    <td style="text-align:center"><button type="button" class="del-row" title="ลบรายการนี้" onclick="this.closest('tr').remove()">✕</button></td></tr>
   `).join('');
-
+ 
   return `
-    <div class="meta-grid">${meta}${linkCard}</div>
-
+    <div class="meta-grid">${meta}</div>
+ 
     <section class="sec">
       <div class="sec-head"><span class="tag">01</span><h2>จุดประสงค์ของ Podcast</h2></div>
       <ul class="plain-list">${purpose}</ul>
     </section>
-
+ 
     <section class="sec">
       <div class="sec-head"><span class="tag">02</span><h2>ประเด็นที่พูดถึงทั้ง ${ep.topics.length} ประเด็น</h2></div>
       <p class="lead">กดที่แต่ละประเด็นเพื่อดูรายละเอียด — แบ่งเป็น Pain Point / บริบท / ข้อเสนอจากผู้พูด / สิ่งที่ชม</p>
       ${topics}
     </section>
-
+ 
     <section class="sec">
       <div class="sec-head"><span class="tag">03</span><h2>การสรุปตอนท้ายของเบส</h2></div>
       <ol class="recap">${recap}</ol>
     </section>
-
+ 
     <section class="sec">
       <div class="sec-head"><span class="tag">04</span><h2>สิ่งที่ทีมงานจะนำไปแก้ไขปรับปรุง</h2></div>
       <div class="tbl-wrap">
         <table>
-          <thead><tr><th>#</th><th>รายการแก้ไข / ปรับปรุง</th><th>ประเภท</th></tr></thead>
-          <tbody>${sugg}</tbody>
+          <thead><tr><th>#</th><th>รายการแก้ไข / ปรับปรุง</th><th>ประเภท</th><th></th></tr></thead>
+          <tbody class="sugg-body">${sugg}</tbody>
         </table>
+        <div class="add-row-wrap">
+          <button type="button" class="add-row-btn" onclick="addSuggestionRow(this)">+ เพิ่มรายการ</button>
+        </div>
       </div>
     </section>
-
+ 
     <div class="note">
       <b>ภาพรวม:</b> น้ำเสียงของทั้งคู่ค่อนข้างบวกต่อค่าย (ชมทีมแอแคลร์, กิจ Spotlight, เรื่อง Merit) —
       ประเด็นส่วนใหญ่ไม่ใช่เรื่อง \u201cของแพง\u201d แต่เป็นเรื่อง supply ที่ไม่ตรง progression,
@@ -486,7 +698,7 @@ function renderLive(ep){
     </div>
   `;
 }
-
+ 
 function renderSoon(ep){
   return `
     <div class="coming">
@@ -499,12 +711,12 @@ function renderSoon(ep){
     </div>
   `;
 }
-
+ 
 /* ===== โหมดแก้ไขข้อความ ===== */
 const editBtn = document.getElementById('editBtn');
 const saveBtn = document.getElementById('saveBtn');
 let editing = false;
-
+ 
 function setEdit(on){
   editing = on;
   document.body.classList.toggle('edit-mode', on);
@@ -514,11 +726,21 @@ function setEdit(on){
   editBtn.classList.toggle('editing', on);
   editBtn.textContent = on ? '✅ เสร็จสิ้น' : '✏️ แก้ไขข้อความ';
 }
-
+ 
 editBtn.addEventListener('click', ()=> setEdit(!editing));
-
+ 
 saveBtn.addEventListener('click', ()=>{
   if(editing) setEdit(false);
+ 
+  // Sync <select> current values into the `selected` attribute of <option>
+  // so the choice persists when the saved HTML is reopened.
+  document.querySelectorAll('select').forEach(sel=>{
+    Array.from(sel.options).forEach(opt=>{
+      if(opt.value === sel.value){ opt.setAttribute('selected',''); }
+      else { opt.removeAttribute('selected'); }
+    });
+  });
+ 
   const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
   const blob = new Blob([html], {type:'text/html;charset=utf-8'});
   const a = document.createElement('a');
