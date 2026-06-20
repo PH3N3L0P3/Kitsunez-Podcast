@@ -302,10 +302,10 @@
       <div class="toolbar">
         <a class="tool-btn yt-btn" id="ytLink" href="#" target="_blank" rel="noopener">▶ ดูคลิปเต็มบน YouTube</a>
         <button class="tool-btn" id="editBtn" type="button">✏️ แก้ไขข้อความ</button>
-        <button class="tool-btn" id="saveBtn" type="button">☁️ บันทึกขึ้น GitHub</button>
+        
       </div>
     </div>
-    <div class="edit-hint">โหมดแก้ไขเปิดอยู่ — คลิกที่ข้อความใดก็ได้เพื่อแก้ เสร็จแล้วกด "เสร็จสิ้น" แล้วกด "บันทึกขึ้น GitHub"</div>
+    <div class="edit-hint">โหมดแก้ไขเปิดอยู่ — คลิกที่ข้อความใดก็ได้เพื่อแก้</div>
     <nav class="ep-rail" id="epRail" aria-label="เลือกตอน"></nav>
   </div>
 </header>
@@ -882,7 +882,7 @@ function setEdit(on){
 editBtn.addEventListener('click', ()=> setEdit(!editing));
  
 // GitHub config
-const GH_TOKEN = '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';
+const GH_TOKEN = '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';
 const GH_REPO  = 'PH3N3L0P3/Kitsunez-Podcast';
 const GH_FILE  = 'index.html';
 const GH_API   = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`;
